@@ -15,14 +15,11 @@ function App() {
       </div>
       <div className="App-body">
         <p>Login to access the full dashboard</p>
-
-       { /* label section */}
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" placeholder="Enter your email" required></input>
+        <input type="email" name="email" id="email"/>
         <label htmlFor="password">Password:</label>
-        <input type="password" id="password" placeholder="Enter your password" required></input>
-        {/* label section */}
-        <button type="submit">OK</button>
+        <input type="password" name="password" id="password"/>
+        <button role="button" type="submit">OK</button>
       </div>
       <div className="App-footer">
         <p>Copyright {getCurrentYear()} {getFooterCopy(true)}</p>
@@ -30,6 +27,5 @@ function App() {
     </>
   );
 }
-
 
 export default App;
