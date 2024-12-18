@@ -16,13 +16,13 @@ function App() {
       <div className="App-body">
         <p>Login to access the full dashboard</p>
 
-       { /* label section  */}
+       { /* label section */}
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" placeholder="Enter your email"></input>
+        <input type="email" id="email" placeholder="Enter your email" required></input>
         <label htmlFor="password">Password:</label>
-        <input type="Password" id="password" placeholder="Enter your password"></input>
-        {/* label section  */}
-        <button role="button" type="submit">OK</button>
+        <input type="password" id="password" placeholder="Enter your password" required></input>
+        {/* label section */}
+        <button type="submit">OK</button>
       </div>
       <div className="App-footer">
         <p>Copyright {getCurrentYear()} {getFooterCopy(true)}</p>
