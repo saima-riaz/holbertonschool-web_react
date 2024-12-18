@@ -15,14 +15,32 @@ function App() {
       </div>
       <div className="App-body">
         <p>Login to access the full dashboard</p>
+
+        {/* Email input section */}
         <label htmlFor="email">Email:</label>
-        <input type="email" name="email" id="email"/>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+        
+        {/* Password input section */}
         <label htmlFor="password">Password:</label>
-        <input type="password" name="password" id="password"/>
-        <button role="button" type="submit">OK</button>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          required
+        />
+        
+        {/* Submit button */}
+        <button type="submit">OK</button>
       </div>
       <div className="App-footer">
-        <p>Copyright {getCurrentYear()} {getFooterCopy(true)}</p>
+        <p>
+          Copyright {getCurrentYear()} {getFooterCopy(true)}
+        </p>
       </div>
     </>
   );
