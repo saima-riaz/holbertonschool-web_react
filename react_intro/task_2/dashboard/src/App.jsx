@@ -18,21 +18,11 @@ function App() {
 
         {/* Email input section */}
         <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter your email"
-          required
-        />
+        <input type="email" id="email" placeholder="Enter your email" required />
         
         {/* Password input section */}
         <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter your password"
-          required
-        />
+        <input type="password" id="password" placeholder="Enter your password" required />
         
         {/* Submit button */}
         <button type="submit">OK</button>
