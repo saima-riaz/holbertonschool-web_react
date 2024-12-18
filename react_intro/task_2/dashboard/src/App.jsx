@@ -18,10 +18,9 @@ function App() {
 
        { /* label section  */}
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" placeholder="Enter your email"></input> 
-        <br/>
+        <input type="email" id="email" placeholder="Enter your email"></input>
         <label htmlFor="password">Password:</label>
-        <input type="Password" id="password" placeholder="Enter your password"></input> <br/>
+        <input type="Password" id="password" placeholder="Enter your password"></input>
         {/* label section  */}
         <button role="button" type="submit">OK</button>
       </div>
