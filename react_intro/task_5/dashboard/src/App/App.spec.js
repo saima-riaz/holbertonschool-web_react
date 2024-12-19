@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { expect, test } from "@jest/globals";
+import { expect, test } from '@jest/globals';
 import App from "./App";
+
 
 // Test for title text
 test("Should return a good title text : School dashboard", () => {

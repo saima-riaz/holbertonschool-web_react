@@ -1,8 +1,9 @@
-import holbertonLogo from "./assets/holberton-logo.jpg";
-import { getCurrentYear, getFooterCopy } from './utils.js'
-import Notifications from "./Notifications.jsx";
-import './Notifications.css'
+import holbertonLogo from "../assets/holberton-logo.jpg";
+import { getCurrentYear, getFooterCopy } from '../utils/utils.js'
+import Notifications from "../Notifications/Notifications.jsx";
+import '../Notifications/Notifications.css'
 import './App.css'
+
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <p>Copyright {getCurrentYear()} - {getFooterCopy(false)}</p>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
