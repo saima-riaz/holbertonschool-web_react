@@ -3,28 +3,43 @@ import App from "./App";
 
 test("renders Header component", () => {
   render(<App />);
-  const headerElement = screen.getByRole("banner"); // Use a semantic role if Header uses <header>
-  expect(headerElement).toBeInTheDocument();
-  expect(screen.getByText(/School dashboard/i)).toBeInTheDocument();
+  const logo = screen.getByAltText(/holberton logo/i);
+  expect(logo).toBeInTheDocument();
+
+  const heading = screen.getByRole("heading", { level: 1 });
+  expect(heading).toHaveTextContent(/school dashboard/i);
 });
 
 test("renders Login component", () => {
   render(<App />);
-  const loginElement = screen.getByRole("main"); // Use a semantic role if Login uses <main>
-  expect(loginElement).toBeInTheDocument();
-  expect(screen.getByText(/Login to access the full dashboard/i)).toBeInTheDocument();
+  
+  // Check for the presence of input fields
+  const emailInput = screen.getByRole("textbox");
+  const passwordInput = screen.getByLabelText(/password/i);
+  expect(emailInput).toBeInTheDocument();
+  expect(passwordInput).toBeInTheDocument();
+
+  // Check for the presence of labels
+  const labelEmail = screen.getByText(/email/i);
+  const labelPassword = screen.getByText(/password/i);
+  expect(labelEmail).toBeInTheDocument();
+  expect(labelPassword).toBeInTheDocument();
+
+  // Check for the presence of the button
+  const button = screen.getByRole("button", { name: /ok/i });
+  expect(button).toBeInTheDocument();
 });
 
 test("renders Footer component", () => {
   render(<App />);
-  const footerElement = screen.getByRole("contentinfo"); // Use a semantic role if Footer uses <footer>
+  const footerElement = screen.getByText(
+    new RegExp(`Copyright ${new Date().getFullYear()} - Holberton School`, "i")
+  );
   expect(footerElement).toBeInTheDocument();
-  expect(screen.getByText(/Copyright/i)).toBeInTheDocument();
 });
 
 test("renders Notifications component", () => {
   render(<App />);
-  const notificationsElement = screen.getByTestId("notifications");
+  const notificationsElement = screen.getByText(/here is the list of notifications/i);
   expect(notificationsElement).toBeInTheDocument();
-  expect(screen.getByText(/Here is the list of notifications/i)).toBeInTheDocument();
 });
