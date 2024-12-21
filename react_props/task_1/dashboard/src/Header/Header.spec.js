@@ -1,18 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import { expect, test } from '@jest/globals';
-import Hearder from "./Header";
+import Header from "../Header/Header";
 
-// Test for title text(header)
-test("Should return a good title text : Holberton logo", () => {
-    render(<Hearder />);
-    const logo = screen.getByText(/Holberton logo/i);
-    expect(logo).toBeInTheDocument();
-  });
+test("Header component contains the Holberton logo", () => {
+  render(<Header />);
+  const logo = screen.getByAltText(/holberton logo/i); // Ensure the alt text matches
+  expect(logo).toBeInTheDocument();
+});
 
-  // Test for header image
-test("Header component contains h1 element with correct text", () => {
-    render(<Hearder />);
-    const heading = screen.getByRole("heading" { level: 1 });
-    expect(heading).toHaveTextContent(/school dashboard/i);
-  });
-  
+test("Header component contains the h1 element with correct text", () => {
+  render(<Header />);
+  const heading = screen.getByRole("heading", { level: 1 });
+  expect(heading).toHaveTextContent(/school dashboard/i); // Ensure the text matches
+});
