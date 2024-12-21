@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, test, describe, jest } from '@jest/globals';
-import Notifications from './Notifications';
+import Notifications from '../Notifications/Notifications.jsx';
+
 
 describe('Notifications Component', () => {
   test('renders the notifications title', () => {
