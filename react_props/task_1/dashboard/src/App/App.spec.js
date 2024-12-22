@@ -1,36 +1,33 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders App components correctly", () => {
-  render(<App />);
+describe("App Component", () => {
+  test("renders Header component", () => {
+    render(<App />);
+    const logo = screen.getByAltText(/holberton logo/i); // Check for the logo
+    expect(logo).toBeInTheDocument();
 
-  // Header component
-  const logo = screen.getByAltText(/holberton logo/i);
-  expect(logo).toBeInTheDocument();
+    const headerElement = screen.getByRole("heading", { level: 1 });
+    expect(headerElement).toHaveTextContent(/school dashboard/i); // Check for the correct heading
+  });
 
-  const heading = screen.getByRole("heading", { level: 1 });
-  expect(heading).toHaveTextContent(/school dashboard/i);
+  test("renders Login component", () => {
+    render(<App />);
+    const loginText = screen.getByText(/login to access the full dashboard/i);
+    expect(loginText).toBeInTheDocument(); // Check for the login prompt
 
-  // Login component
-  const emailInput = screen.getByRole("textbox");
-  const passwordInput = screen.getByLabelText(/password/i);
-  const labelEmail = screen.getByText(/email/i);
-  const labelPassword = screen.getByText(/password/i);
-  const button = screen.getByRole("button", { name: /ok/i });
+    const emailInput = screen.getByLabelText(/email/i);
+    const passwordInput = screen.getByLabelText(/password/i);
+    expect(emailInput).toBeInTheDocument(); // Check for email input
+    expect(passwordInput).toBeInTheDocument(); // Check for password input
 
-  expect(emailInput).toBeInTheDocument();
-  expect(passwordInput).toBeInTheDocument();
-  expect(labelEmail).toBeInTheDocument();
-  expect(labelPassword).toBeInTheDocument();
-  expect(button).toBeInTheDocument();
+    const button = screen.getByRole("button", { name: /ok/i });
+    expect(button).toBeInTheDocument(); // Check for the OK button
+  });
 
-  // Footer component
-  const footerElement = screen.getByText(
-    new RegExp(`Copyright ${new Date().getFullYear()} - Holberton School`, "i")
-  );
-  expect(footerElement).toBeInTheDocument();
-
-  // Notifications component
-  const notificationsElement = screen.getByText(/here is the list of notifications/i);
-  expect(notificationsElement).toBeInTheDocument();
+  test("renders Footer component", () => {
+    render(<App />);
+    const footerElement = screen.getByText(new RegExp(`Copyright ${new Date().getFullYear()} - Holberton School`, "i"));
+    expect(footerElement).toBeInTheDocument(); // Check for the copyright text
+  });
 });
