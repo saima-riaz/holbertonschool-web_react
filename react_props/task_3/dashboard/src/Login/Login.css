@@ -1,0 +1,14 @@
+.App-body {
+  text-align: left;
+  padding: 20px;
+}
+.App-body label {
+  margin-right: 10px;
+}
+.App-body input {
+    margin: 0px 10px 0px 10px;
+    margin-bottom: 90px;
+}
+.App-body p {
+  margin-bottom: 15px;
+}
