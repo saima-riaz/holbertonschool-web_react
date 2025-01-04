@@ -10,7 +10,28 @@ import { getLatestNotification } from "../utils/utils";
 class App extends Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
+    logOut: PropTypes.func,
   };
+
+  static defaultProps = {
+    logOut: () => {},
+  };
+
+  componentDidMount() {
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    window.addEventListener('keydown', this.handleKeyPress);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyPress);
+  }
+
+  handleKeyPress(event) {
+    if (event.ctrlKey && event.key === 'h') {
+      alert('Logging you out');
+      this.props.logOut();
+    }
+  }
 
   render() {
     const { isLoggedIn } = this.props;
@@ -28,9 +49,7 @@ class App extends Component {
 
     return (
       <>
-        <Notifications
-          notifications={notificationsList}
-        />
+        <Notifications notifications={notificationsList} />
         <Header />
         {
           !isLoggedIn ? (
