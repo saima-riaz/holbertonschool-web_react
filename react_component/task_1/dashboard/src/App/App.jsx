@@ -1,3 +1,4 @@
+// App.jsx
 import React, { Component } from 'react';
 import Notifications from "../Notifications/Notifications.jsx";
 import Header from "../Header/Header.jsx";
@@ -18,20 +19,19 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    window.addEventListener('keydown', this.handleKeyPress);
+    window.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyPress);
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleKeyPress(event) {
+  handleKeyDown = (event) => {
     if (event.ctrlKey && event.key === 'h') {
       alert('Logging you out');
       this.props.logOut();
     }
-  }
+  };
 
   render() {
     const { isLoggedIn } = this.props;
@@ -49,7 +49,7 @@ class App extends Component {
 
     return (
       <>
-        <Notifications notifications={notificationsList} />
+        <Notifications notifications={notificationsList} displayDrawer={true} />
         <Header />
         {
           !isLoggedIn ? (

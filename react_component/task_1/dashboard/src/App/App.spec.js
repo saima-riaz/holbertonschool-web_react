@@ -1,31 +1,23 @@
-import { render, fireEvent } from '@testing-library/react';
-import App from './App';
+import { render, fireEvent } from "@testing-library/react";
+import { test, expect, jest } from "@jest/globals";
+import App from "./App";
 
-describe('App Component', () => {
-  
-  let logOutMock;
+test("Should render the header, login, and footer components", () => {
+  render(<App isLoggedIn={false} />);
+});
 
-  beforeEach(() => {
-    logOutMock = jest.fn(); // Create a mock function for logOut
-    window.alert = jest.fn(); // Mock the alert function
-  });
+test("Should call logOut function and alert when Ctrl + H is pressed", () => {
+  const logOutMock = jest.fn();
+  const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
 
-  test('calls logOut function when Control+H is pressed', () => {
-    render(<App logOut={logOutMock} isLoggedIn={true} />); // Render App with logOut and isLoggedIn props
-    
-    // Simulate Control+H key press
-    fireEvent.keyDown(window, { key: 'h', ctrlKey: true });
-    
-    expect(logOutMock).toHaveBeenCalledTimes(1); // Check if logOut was called once
-  });
+  const { getByText } = render(<App isLoggedIn={true} logOut={logOutMock} />);
 
-  test('alerts with correct message when Control+H is pressed', () => {
-    render(<App logOut={logOutMock} isLoggedIn={true} />); // Render App with logOut and isLoggedIn props
-    
-    // Simulate Control+H key press
-    fireEvent.keyDown(window, { key: 'h', ctrlKey: true });
-    
-    expect(window.alert).toHaveBeenCalledWith('Logging you out'); // Check if alert was called with the correct message
-  });
+  // Simulate Ctrl + H key press
+  fireEvent.keyDown(window, { ctrlKey: true, key: 'h' });
 
+  expect(alertMock).toHaveBeenCalledWith('Logging you out');
+  expect(logOutMock).toHaveBeenCalledTimes(1);
+
+  // Clean up the mock
+  alertMock.mockRestore();
 });
