@@ -1,0 +1,11 @@
+.App {
+    text-align: center;
+  }
+  
+  .App.logged-in {
+    background-color: #e0f7fa;
+  }
+  
+  .App.logged-out {
+    background-color: #ffebee;
+  }
