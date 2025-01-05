@@ -9,8 +9,7 @@ test("Should render the header, login, and footer components", () => {
 test("Should call logOut function and alert when Ctrl + H is pressed", () => {
   const logOutMock = jest.fn();
   const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
-
-  const { getByText } = render(<App isLoggedIn={true} logOut={logOutMock} />);
+  render(<App isLoggedIn={true} logOut={logOutMock} />);
 
   // Simulate Ctrl + H key press
   fireEvent.keyDown(window, { ctrlKey: true, key: 'h' });
