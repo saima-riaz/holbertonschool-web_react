@@ -45,8 +45,10 @@ test("Should display a title 'News from the School' and a paragraph with text 'H
   render(<App isLoggedIn={false} />);
 
   // Verify the News from the School title
-  expect(screen.getByText(/News from the School/i)).toBeInTheDocument();
+  const newsTitle = screen.getByText(/News from the School/i);
+  expect(newsTitle).toBeInTheDocument();
 
   // Verify the paragraph content
-  expect(screen.getByText(/Holberton School News goes here/i)).toBeInTheDocument();
+  const newsParagraph = screen.getByText(/Holberton School News goes here/i);
+  expect(newsParagraph).toBeInTheDocument();
 });
