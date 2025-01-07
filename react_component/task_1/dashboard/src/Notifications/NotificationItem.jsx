@@ -5,7 +5,10 @@ class NotificationItem extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    html: PropTypes.shape({
+      __html: PropTypes.string,
+    }),
     markAsRead: PropTypes.func.isRequired,
   };
 
@@ -15,11 +18,11 @@ class NotificationItem extends Component {
   };
 
   render() {
-    const { type, value } = this.props;
+    const { type, value, html } = this.props;
 
     return (
       <li data-notification-type={type} onClick={this.handleClick}>
-        {value}
+        {value || (html && <span dangerouslySetInnerHTML={html} />)}
       </li>
     );
   }

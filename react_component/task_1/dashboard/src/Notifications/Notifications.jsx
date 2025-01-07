@@ -9,12 +9,17 @@ class Notifications extends Component {
         id: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired,
         value: PropTypes.string.isRequired,
+        html: PropTypes.shape({
+          __html: PropTypes.string,
+        }),
       })
     ).isRequired,
   };
 
+
+  // markAsRead method now accepts an id and logs a message to the console
   markAsRead = (id) => {
-    console.log(`Notification ${id} has been marked as read`);
+    console.log(`Notification ${id} has been marked as read`);  // Fixed interpolation here
   };
 
   render() {
@@ -30,7 +35,8 @@ class Notifications extends Component {
               id={notification.id}
               type={notification.type}
               value={notification.value}
-              markAsRead={this.markAsRead}
+              html={notification.html}
+              markAsRead={this.markAsRead}  // Passing markAsRead function as prop
             />
           ))}
         </ul>
