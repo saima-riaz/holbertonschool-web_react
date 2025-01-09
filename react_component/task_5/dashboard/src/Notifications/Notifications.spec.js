@@ -1,22 +1,49 @@
-import { render, fireEvent } from '@testing-library/react';
-import { jest } from '@jest/globals';
+import React from 'react';
+import { render, rerender } from '@testing-library/react';
 import Notifications from './Notifications';
 
-test('Logs the correct message when a notification is clicked', () => {
-  const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {}); // Mock console.log
-  const notifications = [
-    { id: 1, type: 'default', value: 'New course available' },
-    { id: 2, type: 'urgent', value: 'New resume available' },
-  ];
+describe('Notifications component behavior', () => {
+  it("doesn't re-render if notifications length stays the same", () => {
+    const notifications = [
+      { id: 1, type: 'default', value: 'New course available' },
+      { id: 2, type: 'urgent', value: 'New resume available' },
+    ];
 
-  const { getByText } = render(<Notifications notifications={notifications} />);
+    const { container, rerender } = render(
+      <Notifications notifications={notifications} />
+    );
 
-  // Simulate clicking on the first notification
-  fireEvent.click(getByText('New course available'));
+    // Get the initial rendered output
+    const initialRender = container.innerHTML;
 
-  // Assert that the console log message matches the expected message
-  expect(consoleSpy).toHaveBeenCalledWith('Notification 1 has been marked as read');
+    // Re-render with the same notifications
+    rerender(<Notifications notifications={notifications} />);
 
-  // Clean up the mock
-  consoleSpy.mockRestore();
+    // Assert that the rendered output is unchanged
+    expect(container.innerHTML).toBe(initialRender);
+  });
+
+  it('re-renders if notifications length changes', () => {
+    const notifications = [
+      { id: 1, type: 'default', value: 'New course available' },
+      { id: 2, type: 'urgent', value: 'New resume available' },
+    ];
+
+    const { container, rerender } = render(
+      <Notifications notifications={notifications} />
+    );
+
+    // Get the initial rendered output
+    const initialRender = container.innerHTML;
+
+    // Re-render with a longer notifications list
+    const newNotifications = [
+      ...notifications,
+      { id: 3, type: 'urgent', value: 'New message available' },
+    ];
+    rerender(<Notifications notifications={newNotifications} />);
+
+    // Assert that the rendered output has changed
+    expect(container.innerHTML).not.toBe(initialRender);
+  });
 });

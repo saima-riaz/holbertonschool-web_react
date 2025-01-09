@@ -18,6 +18,10 @@ class Notifications extends Component {
     console.log(`Notification ${id} has been marked as read`);  // Fixed interpolation here
   };
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.notifications.length !== this.props.notifications.length;
+  }
+
   render() {
     const { notifications } = this.props;
 
