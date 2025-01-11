@@ -79,18 +79,23 @@ class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  body: {
+  app: {
     fontFamily: 'Arial, sans-serif',
+  },
+  body: {
+    margin: '0 auto',
     padding: '20px',
-    backgroundColor: '#f5f5f5',
+    maxWidth: '900px',
   },
   footer: {
-    fontFamily: 'Arial, sans-serif',
-    fontSize: '12px',
-    borderTop: '1px solid #e6e6e6',
-    paddingTop: '10px',
     textAlign: 'center',
+    padding: '10px 0',
+    borderTop: '1px solid #ccc',
+    position: 'relative',
+    bottom: 0,
+    width: '100%',
   },
 });
+
 
 export default App;
